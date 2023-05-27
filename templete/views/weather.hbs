@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap">
+<style>
+    /* CSS for header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.header .logo {
+  font-size: 25px;
+  font-family: 'Sriracha', cursive;
+  color: #000;
+  text-decoration: none;
+  margin-left: 30px;
+}
+
+.nav-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f5f5f5;
+  margin-right: 20px;
+}
+
+.nav-items a {
+  text-decoration: none;
+  color: #000;
+  padding: 35px 20px;
+}
+        
+        html, body{
+            height: 100%;
+        }
+        
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        body {
+            background-color: #a5a5b1;
+            display: grid;
+            place-items: center;
+            
+        }
+        
+        .card {
+            background-color: #ffffff;
+            border-radius: 50px;
+            color: #6f707d;
+            /* font-family: 'Marcellus', serif; */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        #heading{
+            font-size: 55px;    
+            color: #2b304d;
+        }
+        
+        .temp{
+            place-items: center;
+        }
+        
+        .temp-details > p >span, .grey{
+            color: #6b7181;
+            font-size: 12px;
+        }
+        
+        .fa{
+            color: #a5a5b1
+        }
+        
+         *:focus{
+            outline: none;
+        }
+
+        /* Add a black background color to the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #e9e9e9;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Style the "active" element to highlight the current page */
+.topnav a.active {
+  background-color: #2196F3;
+  color: white;
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type=text] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+}
+
+/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .topnav a, .topnav input[type=text] {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type=text] {
+    border: 1px solid #ccc;
+  }
+}
+</style>
+</head>
+<body>
+    {{>header}}
+      <div class="search">
+             
+            <form action="#">
+                <input id="cityname" type="text"
+                    placeholder="Enter city "
+                    name="search" >
+                <button id="search">
+                    <i class="fa fa-search"
+                        style="font-size: 18px;">
+                    </i>
+                </button>
+            </form>
+        </div>
+    
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4 col-sm-12 col-xs-12"> 
+                   
+                   <div class="card p-4" id="mainmain">    
+                    
+                       <div>
+                           <h5 class="flex-grow-1" id="showcityname">Get output here</h5>
+                           <h6><span id="day">wed</span> | <span id="date">13</span> <span id="month">jan</span> | <span id="time">15:30</span></h6>
+                       </div>
+                        
+                       <div class="d-flex flex-column temp mt-5 mb-3">
+                           <h1 class="mb-0 font-weight-bold"  id="maintemp"> 0<span>&deg; C</span> </h1>
+            
+                       </div>
+                       
+                       <div class="d-flex">
+                           <div class="temp-details flex-grow-1">
+                                <p class="my-1">
+                                    <i class="fa-solid fa-wind"></i>
+                                    <span id="wind" >0 km/h</span>
+                                </p>
+
+                                <p class="my-1"> 
+                                   <i class="fa-solid fa-droplet"></i>
+                                   <span id="humidity" >0</span> 
+                                </p>
+
+                        
+                                <p class="my-1"> 
+                                    <span id="mintemp" >Min : 0 &deg;c</span><br>
+                                    <span id="maxtemp" >Max : 0 &deg;c</span>
+
+                                </p>
+                           </div>
+                           
+                           <div id="weathericon">
+                               <i class="fa-solid fa-sun"  id="icon"style="font-size: 110px;color:yellow"></i>
+                           </div>
+                           
+                           
+                       </div>
+                        
+          
+                    </div>
+            </div>
+        </div>
+
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://kit.fontawesome.com/9ffb7ec0c4.js" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+
+<script>
+    
+    const day = document.getElementById("day");
+    const date = document.getElementById("date");
+    const month = document.getElementById("month");
+    const time = document.getElementById("time");
+
+    let days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+   
+    const d = new Date();
+   
+    day.innerHTML = days[d.getDay()];
+    date.innerHTML = d.getDate();
+    month.innerHTML = months[d.getMonth()];
+    
+    let hours = d.getHours();
+    let minutes =d.getMinutes();
+
+    const gethours = hours > 12 ? hours-=12 : hours;
+    /* const gethours = (hours) => {
+        if(hours > 12){
+         hours -= 12;
+         return hours;
+        }
+        else {
+            return hours;
+        }
+    } */
+
+    const getminute = minutes < 10 ? "0"+minutes : minutes
+    /* const getminute = (minutes) =>{
+        if(minutes < 10){
+            return "0"+minutes;
+        }
+        else {
+            return minutes;
+        }
+    } */
+
+    const getampm = hours >= 12 ? "PM" : "AM"
+    /* const getampm = (hours) =>{
+        if(hours >= 12){
+            return "PM"
+        }
+        else {
+            return "AM"
+        }
+    } */
+
+   
+    time.innerHTML = gethours+":"+getminute+" "+getampm;
+{{!-- 
+    const tempstatus = "{%tempstatus%}"
+    const weathericon = document.getElementById("weathericon")
+
+    if(tempstatus == "Sunny"){
+        weathericon.innnerHTML = '<i class="fa-solid fa-sun"  style="font-size: 110px;color:yellow"></i>'
+
+    }
+    else if(tempstatus == "Clouds"){
+         weathericon.innerHTML =  '<i class="fa-solid fa-cloud" style="font-size: 110px;color:  blue"></i>'
+         
+
+    }
+    else if (tempstatus == "Rainy"){
+        weathericon.innerHTML =  '<i class="fa-solid fa-cloud-rain" style="font-size: 110px;color:  blue"></i>'
+
+    }
+    else
+     {
+        weathericon.innerHTML =  '<i class="fa-solid fa-cloud" style="font-size: 110px;color: blue"></i>'
+    } --}}
+
+    
+    
+
+    
+</script>
+</body>
+
+</html>
