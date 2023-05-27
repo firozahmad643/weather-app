@@ -21,7 +21,7 @@ app.get("/about",(req,res)=>{
 
  app.get("*",(req,res)=>{
     res.render("error404",{
-      errorcomment:"oppes some error"
+      errorcomment:"oppes some error page not found"
     })
  })
 
